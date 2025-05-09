@@ -32,17 +32,16 @@ College Predictor is a web application that helps users find suitable colleges o
 5. View the results or download them as an Excel file.
 
 ## File Structure
-## File Structure
-[app.py](app.py): The main Flask application.
-[templates/index.html](templates/index.html): The HTML template for the web interface.
-[static/style.css](static/style.css): The CSS file for styling the application.
-[RankList.xlsx](RankList.xlsx): The Excel file containing institute data (to be provided by the user).
-[requirements.txt](requirements.txt): The list of required Python libraries.
+- [app.py](app.py): The main Flask application.
+- [templates/index.html](templates/index.html): The HTML template for the web interface.
+- [static/style.css](static/style.css): The CSS file for styling the application.
+- [RankList.xlsx](RankList.xlsx): The Excel file containing institute data (to be provided by the user).
+- [requirements.txt](requirements.txt): The list of required Python libraries.
 
 ## Notes
-Ensure the Excel file ([RankList.xlsx](RankList.xlsx)) has the correct column names and data format.
-The application is designed for local use. For deployment, additional configurations may be required.
+- Ensure the Excel file ([RankList.xlsx](RankList.xlsx)) has the correct column names and data format.
+- The application is designed for local use. For deployment, additional configurations may be required.
 
 
 ## License
-This project is licensed under the MIT License. 
+- This project is licensed under the MIT License. 
