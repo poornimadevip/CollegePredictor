@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>College Predictor</title>
+</head>
+<body>
+    <h1>Find Institutes Based on Rank</h1>
+    <form method="post">
+        <label for="rank">Enter Your Rank:</label>
+        <input type="text" id="rank" name="rank" value="0">
+        <!-- <label for="gender">Select Gender:</label>
+            <select name="gender" id="gender">
+                <option value="">--Select--</option>
+                <option value="Gender-Neutral" selected>Gender-Neutral</option>
+                <option value="Female-only (including Supernumerary)">Female-only</option>
+            </select> -->
+        
+        <label for="academic_programs">Select Academic Programs:</label>
+        <select name="academic_programs" id="academic_programs" multiple width="1000">
+            {% for program in academic_programs %}
+            <option value="{{ program }}">{{ program }}</option>
+            {% endfor %}
+        </select>
+        <label for="Institutes">Select Institutes:</label>
+        <select name="institutes" id="institutes" multiple width="1000">
+            {% for institute in institutes %}
+            <option value="{{ institute }}">{{ institute }}</option>
+            {% endfor %}
+        </select>
+        <table>
+            <tr>
+         <td>
+        <label for="quotas">Select Quota:</label>
+            <select name="quotas" id="quotas" multiple>
+                {% for quota in quotas %}
+                <option value="{{ quota }}">{{ quota }}</option>
+                {% endfor %}
+            </select></td>
+        <td>
+            <label for="year">Select Year:</label>
+            <select name="year" id="year" multiple>
+                <option value="2023" >2023</option>
+                <option value="2024" selected>2024</option>
+            </select>
+        </td>
+        <td>
+            <label for="rounds">Select Rounds:</label> 
+            <select name="rounds" id="rounds" multiple>
+                <option value="R1">R1</option>
+                <option value="R2" >R2</option>   
+                <option value="R3" >R3</option>
+                <option value="R4" >R4</option>
+                <option value="R5" selected >R5</option>
+                
+            </select>
+        </td>
+        </tr>
+        </table>
+        
+        <button type="submit">Find Institutes</button>
+    </form>
+    
+    {% if tables %}
+    <hr>
+    <h2>Results</h2>
+    {% for table in tables %}
+        {{ table | safe }}
+    {% endfor %}
+    <form action="/download" method="post">
+        <input type="hidden" name="rank" value="{{ request.form['rank'] }}">
+        <input type="hidden" name="academic_programs" value="{{ request.form.getlist('academic_programs') | join(',') }}">
+        <input type="hidden" name="institutes" value="{{ request.form.getlist('institutes') | join(',') }}">
+        <input type="hidden" name="quotas" value="{{ request.form.getlist('quota') | join(',') }}">
+        <button type="submit">Download Results as Excel</button>
+    </form>
+    {% endif %}
+</body>
+</html>
